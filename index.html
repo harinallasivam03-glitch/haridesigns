@@ -1,154 +1,129 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hari Designs</title><style>
-    body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        margin: 0;
-        background: linear-gradient(120deg, #49b4c2bc, #ffffff);
-        color: #000000;
-        animation: fadeIn 0.8s ease-in;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hari Designs 3D</title>
 
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI';
+    background: linear-gradient(120deg, #49b4c2bc, #ffffff);
+    overflow-x: hidden;
+}
 
-    header {
-        background: linear-gradient(135deg, #cfcfcf, #2955d8);
-        color: rgb(255, 255, 255);
-        padding: 35px 20px;
-        text-align: center;
-        text-shadow: 0 6px 18px rgb(0, 0, 0);
-        box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-    }
+/* 🌌 background glow */
+body::before {
+    content: "";
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, #00d4ff, transparent);
+    filter: blur(100px);
+    animation: float 8s infinite alternate;
+}
+@keyframes float {
+    from { transform: translateY(0); }
+    to { transform: translateY(-100px); }
+}
 
-    nav {
-        background-color: #ffdd00;
-        padding: 14px;
-        text-align: center;
-        position: sticky;
-        top: 0;
-        box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-        z-index: 1000;
-    }
+/* 🧊 3D Canvas */
+#threeCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
 
-    nav a {
-        color: rgb(0, 0, 0);
-        margin: 14px;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 15px;
-        transition: 0.3s;
-    }
+/* HEADER */
+header {
+    text-align: center;
+    padding: 40px;
+    background: linear-gradient(135deg, #cfcfcf, #2955d8);
+    color: white;
+}
 
-    nav a:hover {
-        text-decoration: underline;
-        transform: scale(1.05);
-    }
+/* NAV */
+nav {
+    text-align: center;
+    background: #ffdd00;
+    padding: 10px;
+    position: sticky;
+    top: 0;
+}
 
-    section {
-        padding: 35px 20px;
-    }
+nav a {
+    margin: 10px;
+    text-decoration: none;
+    font-weight: bold;
+}
 
-    .container {
-        max-width: 1150px;
-        margin: auto;
-    }
+/* SECTION */
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 40px 20px;
+}
 
-    h2 {
-        text-align: center;
-        margin-bottom: 28px;
-        color: #000000;
-        text-shadow: 0 6px 18px rgb(0, 0, 0);
-        font-size: 30px;
-        letter-spacing: 0.5px;
-    }
+/* 3D cards */
+.services {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+.card {
+    width: 260px;
+    padding: 25px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(15px);
+    transform-style: preserve-3d;
+    transition: 0.3s;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+.card:hover {
+    transform: scale(1.05);
+}
 
-    .services {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 22px;
-        justify-content: center;
-    }
+/* button */
+.btn {
+    padding: 12px 20px;
+    border-radius: 10px;
+    border: none;
+    background: #3c1cda;
+    color: white;
+}
 
-    .card {
-        background: linear-gradient(160deg, #fcea67af, #ffffff);
-        padding: 22px;
-        border-radius: 16px;
-        box-shadow: 0 6px 18px rgb(0, 0, 0);
-        flex: 1 1 270px;
-        transition: all 0.25s ease;
-        border-top: 4px solid #000000;
-    }
-
-    .card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 12px 24px rgba(0,0,0,0.15);
-    }
-
-    .btn {
-        background: linear-gradient(135deg, #3c1cda, #ffffff);
-        box-shadow: 0 6px 18px rgb(0, 0, 0);
-        color: rgb(255, 255, 255);
-        text-shadow: 0 6px 18px rgb(0, 0, 0);
-        padding: 13px 20px;
-        border: none;
-        border-radius: 10px;
-        cursor: pointer;
-        box-align:center;
-        font-size: 15px;
-        font-weight: bold;
-        transition: 0.3s;
-    }
-
-    .btn:hover {
-        transform: scale(1.06);
-        opacity: 0.95;
-    }
-
-    footer {
-        background: linear-gradient(135deg, #e1ff00, #ffffff);
-        color: rgb(0, 0, 0);
-        text-shadow: 0 6px 18px rgb(0, 0, 0);
-        text-align: center;
-        padding: 20px;
-        margin-top: 35px;
-        font-size: 14px;
-    }
-
-    input, textarea {
-        width: 100%;
-        padding: 13px;
-        margin-top: 8px;
-        margin-bottom: 18px;
-        border-radius: 10px;
-        border: 1px solid #000000;
-        box-shadow:0 6px 18px rgba(0, 0, 0, 0.716); ;
-        font-size: 14px;
-        transition: 0.2s;
-    }
-
-    input:focus, textarea:focus {
-        outline: none;
-        border-color: #ff1e00;
-        box-shadow: 0 0 6px rgba(0, 0, 0, 0.35);
-    }
+/* contact */
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
 </style>
 
-</head><body><header>
-    <h1>🚀HARI DESIGNS🚀</h1>
-    <p>B.Tech Information Technology Student | Web Developer | Freelancer</p>
-    <p style="font-size:16px; margin-top:8px;">Building Modern Websites and Software Solutions for Clients</p>
-</header><nav>
-    <a href="#home">Home</a>
-    <a href="#services">Services</a>
-    <a href="#pricing">Pricing</a>
-    <a href="#about">About</a>
-    <a href="#portfolio">Portfolio</a>
-    <a href="#contact">Contact</a>
+</head>
+
+<body>
+
+<!-- 🧊 3D Canvas -->
+<canvas id="threeCanvas"></canvas>
+
+<header>
+<h1>🚀 HARI DESIGNS 🚀</h1>
+<p>B.Tech Information Technology Student | Web Developer | Freelancer</p>
+<p>Building Modern Websites and Software Solutions for Clients</p>
+</header>
+
+<nav>
+<a href="#home">HOME</a>
+<a href="#services">SERVICES</a>
+<a href="#pricing">PRICING</a>
+<a href="#about">ABOUT</a>
+<a href="#portfolio">PORTFOLIO</a>
 </nav><section id="home">
     <div class="container">
         <h2>WELCOME</h2>
@@ -261,6 +236,7 @@
     </div>
 </div>
 
+
 </section><section id="contact">
     <div class="container">
         <h2>CONTACT ME</h2><form action="https://formspree.io/f/mpqolopw" method="POST">
@@ -284,6 +260,87 @@
 
 </div>
 
+<!-- Libraries -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+
+<script>
+/* 🎯 3D CARD EFFECT */
+VanillaTilt.init(document.querySelectorAll(".tilt"), {
+    max: 20,
+    speed: 400,
+    glare: true,
+});
+
+/* 🧊 THREE JS */
+const scene = new THREE.Scene();
+
+const camera = new THREE.PerspectiveCamera(
+    75, window.innerWidth / window.innerHeight, 0.1, 1000
+);
+
+const renderer = new THREE.WebGLRenderer({
+    canvas: document.getElementById("threeCanvas"),
+    alpha: true
+});
+renderer.setSize(window.innerWidth, window.innerHeight);
+
+/* 💻 Laptop */
+const laptopGeo = new THREE.BoxGeometry(3,2,0.3);
+const laptopMat = new THREE.MeshStandardMaterial({color:0x0077ff});
+const laptop = new THREE.Mesh(laptopGeo, laptopMat);
+scene.add(laptop);
+
+/* 📱 Phone */
+const phoneGeo = new THREE.BoxGeometry(1,2,0.1);
+const phoneMat = new THREE.MeshStandardMaterial({color:0x111111});
+const phone = new THREE.Mesh(phoneGeo, phoneMat);
+phone.position.x = 3;
+scene.add(phone);
+
+/* 💡 Light */
+const light = new THREE.PointLight(0xffffff,1);
+light.position.set(5,5,5);
+scene.add(light);
+
+camera.position.z = 7;
+
+/* 🎬 Animation */
+function animate(){
+    requestAnimationFrame(animate);
+
+    laptop.rotation.y += 0.01;
+    phone.rotation.y -= 0.01;
+
+    laptop.position.y = Math.sin(Date.now()*0.001)*0.3;
+    phone.position.y = Math.cos(Date.now()*0.001)*0.3;
+
+    renderer.render(scene,camera);
+}
+animate();
+
+/* 🖱 Mouse */
+document.addEventListener("mousemove",(e)=>{
+    let x=(e.clientX/window.innerWidth)-0.5;
+    let y=(e.clientY/window.innerHeight)-0.5;
+
+    laptop.rotation.x = y;
+    laptop.rotation.y = x;
+
+    phone.rotation.x = y;
+    phone.rotation.y = x;
+});
+
+/* 📱 Responsive */
+window.addEventListener("resize",()=>{
+    renderer.setSize(window.innerWidth,window.innerHeight);
+    camera.aspect = window.innerWidth/window.innerHeight;
+    camera.updateProjectionMatrix();
+});
+</script>
+
+</body>
+</html>
 </section><footer>
     <p>© 2026 Haridharan Freelancer | All Rights Reserved</p>
 </footer><script>
@@ -297,6 +354,7 @@ function clearContactForm() {
 }
 </script></body>
 </html>
+
 
 <!-- WhatsApp Button -->
 <a href="https://wa.me/918122888622" target="_blank"
