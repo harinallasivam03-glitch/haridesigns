@@ -3,128 +3,382 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hari Designs 3D</title>
+
+<title>Hari | Flutter Developer</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
-body {
-    margin: 0;
-    font-family: 'Segoe UI';
-    background: linear-gradient(120deg, #49b4c2bc, #ffffff);
-    overflow-x: hidden;
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
 }
 
-/* 🌌 background glow */
-body::before {
-    content: "";
-    position: fixed;
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, #00d4ff, transparent);
-    filter: blur(100px);
-    animation: float 8s infinite alternate;
-}
-@keyframes float {
-    from { transform: translateY(0); }
-    to { transform: translateY(-100px); }
-}
-
-/* 🧊 3D Canvas */
-#threeCanvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: -1;
-}
-
-/* HEADER */
-header {
-    text-align: center;
-    padding: 40px;
-    background: linear-gradient(135deg, #cfcfcf, #2955d8);
-    color: white;
+body{
+  background:linear-gradient(135deg,#020617,#0f172a);
+  color:#e2e8f0;
 }
 
 /* NAV */
-nav {
-    text-align: center;
-    background: #ffdd00;
-    padding: 10px;
-    position: sticky;
-    top: 0;
+nav{
+  padding:20px;
+  background:rgba(2,6,23,0.8);
+  backdrop-filter:blur(10px);
+  text-align:center;
+  border-bottom:1px solid #1e293b;
 }
 
-nav a {
-    margin: 10px;
-    text-decoration: none;
-    font-weight: bold;
+/* HERO */
+.hero{
+  height:85vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+
+.hero h1{
+  font-size:48px;
+  background:linear-gradient(to right,#38bdf8,#22c55e);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.hero p{
+  margin-top:10px;
+  font-size:18px;
+  color:#94a3b8;
+}
+
+/* BUTTON */
+.btn{
+  margin-top:20px;
+  padding:12px 25px;
+  background:linear-gradient(to right,#38bdf8,#22c55e);
+  color:#020617;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:bold;
+  transition:0.3s;
+  display:inline-block;
+}
+
+.btn:hover{
+  transform:scale(1.05);
 }
 
 /* SECTION */
-.container {
-    max-width: 1100px;
-    margin: auto;
-    padding: 40px 20px;
+section{
+  padding:80px 20px;
+  text-align:center;
 }
 
-/* 3D cards */
-.services {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-}
-.card {
-    width: 260px;
-    padding: 25px;
-    border-radius: 20px;
-    background: rgba(255,255,255,0.2);
-    backdrop-filter: blur(15px);
-    transform-style: preserve-3d;
-    transition: 0.3s;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-}
-.card:hover {
-    transform: scale(1.05);
+/* PROJECT */
+.project{
+  margin:50px auto;
+  max-width:900px;
 }
 
-/* button */
-.btn {
-    padding: 12px 20px;
-    border-radius: 10px;
-    border: none;
-    background: #3c1cda;
-    color: white;
+.project h3{
+  margin-bottom:15px;
+  font-size:24px;
+  color:#38bdf8;
 }
 
-/* contact */
-input, textarea {
-    width: 100%;
-    padding: 10px;
-    border-radius: 10px;
-    margin-bottom: 10px;
+.poster{
+  width:100%;
+  border-radius:15px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.5);
+  transition:0.3s;
+  margin-bottom:20px;
 }
+
+.poster:hover{
+  transform:scale(1.02);
+}
+
+/* MAIN POSTER */
+.main-poster{
+  margin-bottom:55px;
+}
+
+/* GRID GALLERY */
+.project-gallery{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:15px;
+}
+
+.project-gallery img{
+  width:100%;
+  border-radius:12px;
+  transition:0.3s;
+}
+
+.project-gallery img:hover{
+  transform:scale(1.05);
+}
+
+/* SLIDER FULL SIZE */
+.slider{
+  position:relative;
+  width:100%;
+  max-width:1100px; /* BIG SIZE */
+  margin:auto;
+}
+
+/* EACH SLIDE */
+.slide{
+  display:none;
+}
+
+.slide.active{
+  display:block;
+}
+
+/* IMAGE BIG SIZE */
+.slide img{
+  width:100%;
+  height:auto;
+  border-radius:15px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.6);
+}
+
+/* ARROWS */
+.arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:40px;
+  color:white;
+  background:rgba(0,0,0,0.4);
+  padding:10px 18px;
+  cursor:pointer;
+  border-radius:10px;
+  user-select:none;
+}
+
+.arrow.left{ left:10px; }
+.arrow.right{ right:10px; }
+
+/* MOBILE */
+@media(max-width:768px){
+  .slide img{
+    height:250px;
+  }
+}
+
+/* PRICING GRID */
+.grid{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+/* CARD */
+.card{
+  background:rgba(30,41,59,0.6);
+  backdrop-filter:blur(12px);
+  padding:20px;
+  margin:15px;
+  border-radius:20px;
+  width:280px;
+  transition:0.3s;
+  border:1px solid rgba(255,255,255,0.05);
+}
+
+.card:hover{
+  transform:translateY(-10px) scale(1.02);
+}
+
+/* FORM */
+input,textarea{
+  width:85%;
+  padding:12px;
+  margin:10px;
+  border:none;
+  border-radius:8px;
+  background:#1e293b;
+  color:white;
+}
+
+button{
+  padding:12px 25px;
+  background:linear-gradient(to right,#38bdf8,#22c55e);
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+/* WHATSAPP */
+.whatsapp{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#25D366;
+  color:white;
+  padding:15px;
+  border-radius:50%;
+  text-decoration:none;
+  font-size:20px;
+  box-shadow:0 0 10px #25D366;
+}
+
+body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        background: linear-gradient(120deg, #49b4c2bc, #ffffff);
+        color: #000000;
+        animation: fadeIn 0.8s ease-in;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    header {
+        background: linear-gradient(135deg, #cfcfcf, #2955d8);
+        color: rgb(255, 255, 255);
+        padding: 35px 20px;
+        text-align: center;
+        text-shadow: 0 6px 18px rgb(0, 0, 0);
+        box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+    }
+
+    nav {
+        background-color: #ffdd00;
+        padding: 14px;
+        text-align: center;
+        position: sticky;
+        top: 0;
+        box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+        z-index: 1000;
+    }
+
+    nav a {
+        color: rgb(0, 0, 0);
+        margin: 14px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 15px;
+        transition: 0.3s;
+    }
+
+    nav a:hover {
+        text-decoration: underline;
+        transform: scale(1.05);
+    }
+
+    section {
+        padding: 35px 20px;
+    }
+
+    .container {
+        max-width: 1150px;
+        margin: auto;
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 28px;
+        color: #000000;
+        text-shadow: 0 6px 18px rgb(0, 0, 0);
+        font-size: 30px;
+        letter-spacing: 0.5px;
+    }
+
+    .services {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 22px;
+        justify-content: center;
+    }
+
+    .card {
+        background: linear-gradient(160deg, #fcea67af, #ffffff);
+        padding: 22px;
+        border-radius: 16px;
+        box-shadow: 0 6px 18px rgb(0, 0, 0);
+        flex: 1 1 270px;
+        transition: all 0.25s ease;
+        border-top: 4px solid #000000;
+    }
+
+    .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+    }
+
+    .btn {
+        background: linear-gradient(135deg, #330aea, #ffffff);
+        box-shadow: 0 6px 18px rgb(0, 0, 0);
+        color: rgb(255, 255, 255);
+        text-shadow: 0 6px 18px rgb(0, 0, 0);
+        padding: 13px 20px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        box-align: center;
+        font-size: 15px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .btn:hover {
+        transform: scale(1.06);
+        opacity: 0.95;
+    }
+
+    footer {
+        background: linear-gradient(135deg, #e1ff00, #ffffff);
+        color: rgb(0, 0, 0);
+        text-shadow: 0 6px 18px rgb(0, 0, 0);
+        text-align: center;
+        padding: 20px;
+        margin-top: 35px;
+        font-size: 14px;
+    }
+
+    input, textarea {
+        width: 100%;
+        padding: 13px;
+        margin-top: 8px;
+        margin-bottom: 18px;
+        border-radius: 10px;
+        border: 1px solid #000000;
+        box-shadow:0 6px 18px rgba(0, 0, 0, 0.716); ;
+        font-size: 14px;
+        transition: 0.2s;
+    }
+
+    input:focus, textarea:focus {
+        outline: none;
+        border-color: #ff1e00;
+        box-shadow: 0 0 6px rgba(0, 0, 0, 0.35);
+    }
 </style>
-
 </head>
 
-<body>
-
-<!-- 🧊 3D Canvas -->
-<canvas id="threeCanvas"></canvas>
-
-<header>
-<h1>🚀 HARI DESIGNS 🚀</h1>
-<p>B.Tech Information Technology Student | Web Developer | Freelancer</p>
-<p>Building Modern Websites and Software Solutions for Clients</p>
-</header>
-
-<nav>
-<a href="#home">HOME</a>
-<a href="#services">SERVICES</a>
-<a href="#pricing">PRICING</a>
-<a href="#about">ABOUT</a>
-<a href="#portfolio">PORTFOLIO</a>
+</head><body><header>
+    <h1>🚀Hari Designs🚀</h1>
+    <p>B.Tech Information Technology Student | Web Developer | Freelancer</p>
+    <p style="font-size:16px; margin-top:8px;">Building Modern websites and software solutions for clients</p>
+</header><nav>
+    <a href="#home">Home</a>
+    <a href="#services">Services</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#about">About</a>
+    <a href="#project">Project</a>
+    <a href="#contact">Contact</a>
+</section>
 </nav><section id="home">
+<section>
     <div class="container">
         <h2>WELCOME</h2>
         <p>
@@ -134,7 +388,9 @@ input, textarea {
         </p>
         <a href="#contact" class="btn" onclick="clearContactForm()">Hire Me</a>
     </div>
+</section>
 </section><section id="services">
+<section>
     <div class="container">
         <h2>MY SERVICES</h2><div class="services">
 
@@ -166,45 +422,114 @@ input, textarea {
 
     </div>
 </div>
+</section>
+</section><section id="project">>
+<section>
+<h2>MY PROJECTS</h2>
 
-</section><section id="pricing">
-    <div class="container">
-        <h2>SERVICE PRICING</h2><div class="services">
- 
-            
-        <div class="card">
-            <h3>Android App</h3>
-            <p>Basic Android application</p>
-            <h2>₹5,000</h2>
-        </div>
-       
-        <div class="card">
-            <h3>Business Website</h3>
-            <p>Responsive website with contact form</p>
-            <h2>₹3,000</h2>
-        </div>
+<!-- NOTES -->
+<div class="project">
+<h3>Notes App</h3>
 
-        <div class="card">
-            <h3>Basic Website</h3>
-            <p>Simple static website</p>
-            <h2>₹2,000</h2>
-        </div>
+<div class="slider">
 
-        <div class="card">
-            <h3>College Project</h3>
-            <p>Project development and documentation</p>
-            <h2>₹1,000</h2>
-        </div>
+<div class="slide active"><img src="notes1.png"></div>
+<div class="slide"><img src="notes2.png"></div>
+<div class="slide"><img src="notes3.png"></div>
 
-        <div class="card">
-            <h3>Instagram Poster Create</h3>
-            <p>Instagram Poster Create for custom </p>
-            <h2>₹500</h2>
-        </div>
-
-    </div>
+<span class="arrow left" onclick="prevSlide(this)">❮</span>
+<span class="arrow right" onclick="nextSlide(this)">❯</span>
 </div>
 
+
+<!-- CHAT -->
+<div class="project">
+<h3>Chat App</h3>
+
+<div class="slider">
+
+<div class="slide active"><img src="chat1.png"></div>
+<div class="slide"><img src="chat2.png"></div>
+<div class="slide"><img src="chat3.png"></div>
+
+<span class="arrow left" onclick="prevSlide(this)">❮</span>
+<span class="arrow right" onclick="nextSlide(this)">❯</span>
+</div>
+
+<!-- TODO -->
+<div class="project">
+<h3>ToDo App</h3>
+
+<div class="slider">
+
+<div class="slide active"><img src="todo1.png"></div>
+<div class="slide"><img src="todo2.png"></div>
+<div class="slide"><img src="todo3.png"></div>
+
+<span class="arrow left" onclick="prevSlide(this)">❮</span>
+<span class="arrow right" onclick="nextSlide(this)">❯</span>
+</div>
+</div>
+
+<!-- BALANCE APP -->
+<div class="project">
+<h3>Balance App</h3>
+
+<div class="slider">
+
+<div class="slide active"><img src="balance1.png"></div>
+<div class="slide"><img src="balance2.png"></div>
+<div class="slide"><img src="balance3.png"></div>
+
+<span class="arrow left" onclick="prevSlide(this)">❮</span>
+<span class="arrow right" onclick="nextSlide(this)">❯</span>
+</div>
+</div>
+
+</section>
+</section><section id="pricing">
+<section>
+<h2>PRICING LIST</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>College Project</h3>
+<h2>₹999</h2>
+<p>✔ App UI Design</p>
+<p>✔ Modern Design</p>
+<p>✔ Revisions</p>
+<a href="#contact" class="btn">Order Now</a>
+</div>
+
+<div class="card">
+<h3>Basic Website</h3>
+<h2>₹1999</h2>
+<p>✔ 1 Screen UI</p>
+<p>✔ Simple Design</p>
+<p>✔ 1 Revision</p>
+<a href="#contact" class="btn">Order Now</a>
+</div>
+
+<div class="card">
+<h3>Business Website</h3>
+<h2>₹2999</h2>
+<p>✔ 3 Screens UI</p>
+<p>✔ Clean Design</p>
+<p>✔ 2 Revisions</p>
+<a href="#contact" class="btn">Order Now</a>
+</div>
+
+<div class="card">
+<h3>Android App</h3>
+<h2>₹4999</h2>
+<p>✔ Full App UI</p>
+<p>✔ Modern Design</p>
+<p>✔ Unlimited Revisions</p>
+<a href="#contact" class="btn">Order Now</a>
+</div>
+
+</div>
 </section><section id="about">
     <div class="container">
         <h2>ABOUT ME</h2>
@@ -214,147 +539,30 @@ input, textarea {
             help clients achieve their ideas using technology.
         </p>
     </div>
-</section><section id="portfolio">
-    <div class="container">
-        <h2>MY PORTFOLIO</h2><div class="services">
 
-        <div class="card">
-            <h3>Student Management System</h3>
-            <p>A web application to manage student records.</p>
-        </div>
+<!-- CONTACT -->
+<section id="contact">
+<h2>CONTACT ME</h2>
 
-        <div class="card">
-            <h3>Billing Software</h3>
-            <p>Simple billing system for small businesses.</p>
-        </div>
+<form action="https://formspree.io/f/mvzdvrkp" method="POST">
+<input type="hidden" name="_subject" value="New Client Message!">
 
-        <div class="card">
-            <h3>Personal Portfolio Website</h3>
-            <p>Responsive website design for clients.</p>
-        </div>
+<input type="text" name="name" placeholder="Your Name" required><br>
+<input type="email" name="email" placeholder="Your Email" required><br>
+<textarea name="message" placeholder="Your Message" required></textarea><br>
+<button type="submit">Send Message</button>
+</form>
 
-    </div>
-</div>
+<p>Email:harinallasivam03@gmail.com
+  <br>
+   Phone: +91 8122888622
+</p>
 
+</section>
 
-</section><section id="contact">
-    <div class="container">
-        <h2>CONTACT ME</h2><form action="https://formspree.io/f/mvzdvrkp" method="POST">
-        <label>Your Name</label>
-        <input type="text" name="name" placeholder="Enter your name" required>
-
-        <label>Email</label>
-        <input type="email" name="email" placeholder="Enter your email" required>
-
-        <label>Message</label>
-        <textarea name="message" rows="4" placeholder="Enter your message" required></textarea>
-
-        <button class="btn" type="submit">Send Message</button>
-    </form>
-
-    <p>
-        Email: harinallasivam03@gmail.com
-        <br>
-        Phone: +91 81228 88622
-    </p>
-
-</div>
-
-<!-- Libraries -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
-
-<script>
-/* 🎯 3D CARD EFFECT */
-VanillaTilt.init(document.querySelectorAll(".tilt"), {
-    max: 20,
-    speed: 400,
-    glare: true,
-});
-
-/* 🧊 THREE JS */
-const scene = new THREE.Scene();
-
-const camera = new THREE.PerspectiveCamera(
-    75, window.innerWidth / window.innerHeight, 0.1, 1000
-);
-
-const renderer = new THREE.WebGLRenderer({
-    canvas: document.getElementById("threeCanvas"),
-    alpha: true
-});
-renderer.setSize(window.innerWidth, window.innerHeight);
-
-/* 💻 Laptop */
-const laptopGeo = new THREE.BoxGeometry(3,2,0.3);
-const laptopMat = new THREE.MeshStandardMaterial({color:0x0077ff});
-const laptop = new THREE.Mesh(laptopGeo, laptopMat);
-scene.add(laptop);
-
-/* 📱 Phone */
-const phoneGeo = new THREE.BoxGeometry(1,2,0.1);
-const phoneMat = new THREE.MeshStandardMaterial({color:0x111111});
-const phone = new THREE.Mesh(phoneGeo, phoneMat);
-phone.position.x = 3;
-scene.add(phone);
-
-/* 💡 Light */
-const light = new THREE.PointLight(0xffffff,1);
-light.position.set(5,5,5);
-scene.add(light);
-
-camera.position.z = 7;
-
-/* 🎬 Animation */
-function animate(){
-    requestAnimationFrame(animate);
-
-    laptop.rotation.y += 0.01;
-    phone.rotation.y -= 0.01;
-
-    laptop.position.y = Math.sin(Date.now()*0.001)*0.3;
-    phone.position.y = Math.cos(Date.now()*0.001)*0.3;
-
-    renderer.render(scene,camera);
-}
-animate();
-
-/* 🖱 Mouse */
-document.addEventListener("mousemove",(e)=>{
-    let x=(e.clientX/window.innerWidth)-0.5;
-    let y=(e.clientY/window.innerHeight)-0.5;
-
-    laptop.rotation.x = y;
-    laptop.rotation.y = x;
-
-    phone.rotation.x = y;
-    phone.rotation.y = x;
-});
-
-/* 📱 Responsive */
-window.addEventListener("resize",()=>{
-    renderer.setSize(window.innerWidth,window.innerHeight);
-    camera.aspect = window.innerWidth/window.innerHeight;
-    camera.updateProjectionMatrix();
-});
-</script>
-
-</body>
-</html>
-</section><footer>
-    <p>© 2026 Haridharan Freelancer | All Rights Reserved</p>
-</footer><script>
-function clearContactForm() {
-    setTimeout(function() {
-        var form = document.querySelector('#contact form');
-        if (form) {
-            form.reset();
-        }
-    }, 100);
-}
-</script></body>
-</html>
-
+<footer style="text-align:center;padding:20px;">
+<p>© 2026 Haridharan Freelancer | All Rights Reserved</p>
+</footer>
 
 <!-- WhatsApp Button -->
 <a href="https://wa.me/918122888622" target="_blank"
@@ -363,7 +571,33 @@ background:#25D366;
 padding:13px;
 border-radius:10px;
 box-shadow: 0 0 6px rgba(0, 0, 0, 0.35);
-border-color: #ff1e00;
+border-color: #000000;
 text-decoration:none;">       
 💬Whatsapp
 </a>
+
+<!-- JS -->
+<script>
+function nextSlide(btn){
+  let slider = btn.parentElement;
+  let slides = slider.querySelectorAll(".slide");
+  let index = [...slides].findIndex(s => s.classList.contains("active"));
+
+  slides[index].classList.remove("active");
+  let next = (index + 1) % slides.length;
+  slides[next].classList.add("active");
+}
+
+function prevSlide(btn){
+  let slider = btn.parentElement;
+  let slides = slider.querySelectorAll(".slide");
+  let index = [...slides].findIndex(s => s.classList.contains("active"));
+
+  slides[index].classList.remove("active");
+  let prev = (index - 1 + slides.length) % slides.length;
+  slides[prev].classList.add("active");
+}
+</script>
+
+</body>
+</html>
